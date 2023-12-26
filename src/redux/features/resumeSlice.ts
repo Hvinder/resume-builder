@@ -69,6 +69,8 @@ export const selectPersonalDetails = (state: RootState) =>
   state.resume.personalDetails;
 export const selectWorkExperiences = (state: RootState) =>
   state.resume.workDetails;
+export const selectEducationDetails = (state: RootState) =>
+  state.resume.educationDetails;
 export const selectResumeDetails = (state: RootState) => state.resume;
 
 export default resumeSlice.reducer;

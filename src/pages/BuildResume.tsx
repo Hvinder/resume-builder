@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PersonalDetails from "../components/PersonalDetails";
 import Preview from "../components/Preview";
 import WorkExperience from "../components/WorkExperience";
+import EducationDetailsContainer from "../components/EducationDetails";
 
 const Row = styled.div`
   display: flex;
@@ -28,6 +29,10 @@ const BuildResume = () => {
         <Row>
           <p>Work experience</p>
           <WorkExperience />
+        </Row>
+        <Row>
+          <p>Education details</p>
+          <EducationDetailsContainer />
         </Row>
       </Container>
       <Container width="40%">

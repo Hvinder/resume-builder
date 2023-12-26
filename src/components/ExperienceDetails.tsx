@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { WorkDetails } from "../types";
+import { EducationDetails, WorkDetails } from "../types";
 
 const Row = styled.div`
   display: flex;
@@ -8,22 +8,26 @@ const Row = styled.div`
 `;
 
 const ExperienceDetails = ({
-  workExperience,
+  experience,
 }: {
-  workExperience: WorkDetails;
+  experience: WorkDetails | EducationDetails;
 }) => {
   return (
     <div>
       <Row className="justify-between pr-5">
-        <span className="font-bold">{workExperience.organizationName}</span>
-        <span className="italic">{workExperience.location}</span>
+        <span className="font-bold">{experience.organizationName}</span>
+        <span className="italic">{experience.location}</span>
       </Row>
-      <Row>{workExperience.position}</Row>
       <Row>
-        {`${workExperience.startMonth} ${workExperience.startYear}`} -{" "}
-        {workExperience.isCurrent
+        {"position" in experience
+          ? experience.position
+          : experience.specialization}
+      </Row>
+      <Row>
+        {`${experience.startMonth} ${experience.startYear}`} -{" "}
+        {experience.isCurrent
           ? ""
-          : `${workExperience.endMonth} ${workExperience.endYear}`}
+          : `${experience.endMonth} ${experience.endYear}`}
       </Row>
     </div>
   );

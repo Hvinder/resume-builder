@@ -1,45 +1,44 @@
 import { useState } from "react";
-import { XCircle } from "react-feather";
-
-import Input from "../common/Input";
 import {
-  removeWorkDetails,
-  selectWorkExperiences,
-  setWorkDetails,
+  removeEducationDetails,
+  selectEducationDetails,
+  setEducationDetails,
 } from "../redux/features/resumeSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { WorkDetails } from "../types";
+import { EducationDetails } from "../types";
+import { XCircle } from "react-feather";
+import Input from "../common/Input";
 import ExperienceDetails from "./ExperienceDetails";
 
-const WorkExperience = () => {
-  const workExperiences = useAppSelector(selectWorkExperiences);
+const EducationDetailsContainer = () => {
+  const educationDetails = useAppSelector(selectEducationDetails);
   const dispatch = useAppDispatch();
 
-  const [experience, setExperience] = useState<Partial<WorkDetails>>();
+  const [experience, setExperience] = useState<Partial<EducationDetails>>();
 
   const handleSaveExperience = () => {
     if (
       !(
         experience?.organizationName &&
         experience.location &&
-        experience.position
+        experience.specialization
       )
     ) {
       return;
     }
-    dispatch(setWorkDetails(experience as WorkDetails));
+    dispatch(setEducationDetails(experience as EducationDetails));
     setExperience(undefined);
   };
 
   const handleRemoveExperience = (index: number) => {
-    dispatch(removeWorkDetails(index));
+    dispatch(removeEducationDetails(index));
   };
 
   return (
     <div className="flex flex-col gap-5 w-3/5">
-      {workExperiences.map((workExperience, i) => (
+      {educationDetails.map((educationDetails, i) => (
         <div className="relative">
-          <ExperienceDetails experience={workExperience} />
+          <ExperienceDetails experience={educationDetails} />
           <XCircle
             className="absolute top-0 -right-5 cursor-pointer"
             onClick={() => handleRemoveExperience(i)}
@@ -63,11 +62,14 @@ const WorkExperience = () => {
         <div className="flex flex-col w-3/5">
           <Input
             type="text"
-            value={experience?.position}
+            value={experience?.specialization}
             onChange={(ev) =>
-              setExperience((exp) => ({ ...exp, position: ev.target.value }))
+              setExperience((exp) => ({
+                ...exp,
+                specialization: ev.target.value,
+              }))
             }
-            placeholder="enter your position"
+            placeholder="enter your specialization"
           />
         </div>
         <div className="flex flex-col w-3/5">
@@ -82,10 +84,12 @@ const WorkExperience = () => {
         </div>
         <div className="flex flex-col w-3/5">
           <span>currently working?</span>
-          <input type="checkbox" checked={!!experience?.isCurrent} 
-          onChange={(ev) =>
-            setExperience((exp) => ({ ...exp, isCurrent: ev.target.checked }))
-          }
+          <input
+            type="checkbox"
+            checked={!!experience?.isCurrent}
+            onChange={(ev) =>
+              setExperience((exp) => ({ ...exp, isCurrent: ev.target.checked }))
+            }
           />
         </div>
       </div>
@@ -99,4 +103,4 @@ const WorkExperience = () => {
   );
 };
 
-export default WorkExperience;
+export default EducationDetailsContainer;

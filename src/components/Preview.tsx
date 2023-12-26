@@ -61,8 +61,16 @@ const Preview = () => {
       {resumeDetails.workDetails.length && (
         <div className="flex flex-col gap-2 mt-10 mb-5">
           <p className="text-3xl">Work Experience</p>
-          {resumeDetails.workDetails.map((workExperience) => (
-            <ExperienceDetails workExperience={workExperience} />
+          {resumeDetails.workDetails.map((experience) => (
+            <ExperienceDetails experience={experience} />
+          ))}
+        </div>
+      )}
+      {resumeDetails.educationDetails.length && (
+        <div className="flex flex-col gap-2 mt-10 mb-5">
+          <p className="text-3xl">Education Details</p>
+          {resumeDetails.educationDetails.map((experience) => (
+            <ExperienceDetails experience={experience} />
           ))}
         </div>
       )}
