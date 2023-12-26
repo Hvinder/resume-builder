@@ -34,9 +34,11 @@ export const resumeSlice = createSlice({
     },
     setEducationDetails: (state, action: PayloadAction<EducationDetails>) => {
       state.educationDetails = [...state.educationDetails, action.payload];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
     },
     setWorkDetails: (state, action: PayloadAction<WorkDetails>) => {
       state.workDetails = [...state.workDetails, action.payload];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
     },
     removeEducationDetails: (state, action: PayloadAction<number>) => {
       state.educationDetails = [
@@ -61,6 +63,8 @@ export const {
 
 export const selectPersonalDetails = (state: RootState) =>
   state.resume.personalDetails;
+export const selectWorkExperiences = (state: RootState) =>
+  state.resume.workDetails;
 export const selectResumeDetails = (state: RootState) => state.resume;
 
 export default resumeSlice.reducer;
