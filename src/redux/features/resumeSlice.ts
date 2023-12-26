@@ -42,6 +42,10 @@ export const resumeSlice = createSlice({
       state.workDetails = [...state.workDetails, action.payload];
       localStorage.setItem("resumetemp", JSON.stringify(state));
     },
+    setSkills: (state, action: PayloadAction<string>) => {
+      state.skills = [...state.skills, action.payload];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
+    },
     removeEducationDetails: (state, action: PayloadAction<number>) => {
       state.educationDetails = [
         ...state.educationDetails.filter((_v, i) => i !== action.payload),
@@ -54,6 +58,10 @@ export const resumeSlice = createSlice({
       ];
       localStorage.setItem("resumetemp", JSON.stringify(state));
     },
+    removeSkills: (state, action: PayloadAction<number>) => {
+      state.skills = [...state.skills.filter((_v, i) => i !== action.payload)];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
+    },
   },
 });
 
@@ -61,8 +69,10 @@ export const {
   setPersonalDetails,
   setEducationDetails,
   setWorkDetails,
+  setSkills,
   removeEducationDetails,
   removeWorkDetails,
+  removeSkills,
 } = resumeSlice.actions;
 
 export const selectPersonalDetails = (state: RootState) =>
@@ -71,6 +81,7 @@ export const selectWorkExperiences = (state: RootState) =>
   state.resume.workDetails;
 export const selectEducationDetails = (state: RootState) =>
   state.resume.educationDetails;
+export const selectSkills = (state: RootState) => state.resume.skills;
 export const selectResumeDetails = (state: RootState) => state.resume;
 
 export default resumeSlice.reducer;

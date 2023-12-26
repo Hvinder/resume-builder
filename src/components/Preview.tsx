@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { selectResumeDetails } from "../redux/features/resumeSlice";
 import { useAppSelector } from "../redux/hooks";
 import ExperienceDetails from "./ExperienceDetails";
+import SkillsList from "./SkillsList";
 
 const Row = styled.div`
   display: flex;
@@ -72,6 +73,12 @@ const Preview = () => {
           {resumeDetails.educationDetails.map((experience) => (
             <ExperienceDetails experience={experience} />
           ))}
+        </div>
+      )}
+      {resumeDetails.skills.length && (
+        <div className="flex flex-col gap-2 mt-10 mb-5">
+          <p className="text-3xl">Skills</p>
+            <SkillsList />
         </div>
       )}
     </div>
