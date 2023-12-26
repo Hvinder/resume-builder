@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { XCircle } from "react-feather";
 
 import Input from "../common/Input";
 import {
+  removeWorkDetails,
   selectWorkExperiences,
   setWorkDetails,
 } from "../redux/features/resumeSlice";
@@ -29,10 +31,20 @@ const WorkExperience = () => {
     setExperience(undefined);
   };
 
+  const handleRemoveExperience = (index: number) => {
+    dispatch(removeWorkDetails(index));
+  };
+
   return (
     <div className="flex flex-col gap-5 w-3/5">
-      {workExperiences.map((workExperience) => (
-        <ExperienceDetails workExperience={workExperience} />
+      {workExperiences.map((workExperience, i) => (
+        <div className="relative">
+          <ExperienceDetails workExperience={workExperience} />
+          <XCircle
+            className="absolute top-0 -right-5 cursor-pointer"
+            onClick={() => handleRemoveExperience(i)}
+          />
+        </div>
       ))}
       <div className="border-b-2 pb-2">
         <div className="flex flex-col w-3/5">
@@ -66,6 +78,14 @@ const WorkExperience = () => {
               setExperience((exp) => ({ ...exp, location: ev.target.value }))
             }
             placeholder="enter your location"
+          />
+        </div>
+        <div className="flex flex-col w-3/5">
+          <span>currently working?</span>
+          <input type="checkbox" checked={!!experience?.isCurrent} 
+          onChange={(ev) =>
+            setExperience((exp) => ({ ...exp, isCurrent: ev.target.checked }))
+          }
           />
         </div>
       </div>

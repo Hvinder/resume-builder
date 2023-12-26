@@ -19,6 +19,12 @@ const ExperienceDetails = ({
         <span className="italic">{workExperience.location}</span>
       </Row>
       <Row>{workExperience.position}</Row>
+      <Row>
+        {`${workExperience.startMonth} ${workExperience.startYear}`} -{" "}
+        {workExperience.isCurrent
+          ? ""
+          : `${workExperience.endMonth} ${workExperience.endYear}`}
+      </Row>
     </div>
   );
 };

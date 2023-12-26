@@ -22,7 +22,9 @@ const emptyInitialState: ResumeState = {
   skills: [],
 };
 
-const initialState: ResumeState = JSON.parse(localStorage.getItem("resumetemp") || JSON.stringify(emptyInitialState)) as ResumeState
+const initialState: ResumeState = JSON.parse(
+  localStorage.getItem("resumetemp") || JSON.stringify(emptyInitialState),
+) as ResumeState;
 
 export const resumeSlice = createSlice({
   name: "resume",
@@ -44,11 +46,13 @@ export const resumeSlice = createSlice({
       state.educationDetails = [
         ...state.educationDetails.filter((_v, i) => i !== action.payload),
       ];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
     },
     removeWorkDetails: (state, action: PayloadAction<number>) => {
       state.workDetails = [
         ...state.workDetails.filter((_v, i) => i !== action.payload),
       ];
+      localStorage.setItem("resumetemp", JSON.stringify(state));
     },
   },
 });
