@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { EducationDetails, PersonalDetails, WorkDetails } from "../../types";
 import { RootState } from "../store";
+import { localstorageKeys } from "../../utils/localstorage";
 
 export interface ResumeState {
   personalDetails: PersonalDetails;
@@ -23,7 +24,8 @@ const emptyInitialState: ResumeState = {
 };
 
 const initialState: ResumeState = JSON.parse(
-  localStorage.getItem("resumetemp") || JSON.stringify(emptyInitialState),
+  localStorage.getItem(localstorageKeys.RESUMETEMP) ||
+    JSON.stringify(emptyInitialState),
 ) as ResumeState;
 
 export const resumeSlice = createSlice({
@@ -32,35 +34,35 @@ export const resumeSlice = createSlice({
   reducers: {
     setPersonalDetails: (state, action: PayloadAction<PersonalDetails>) => {
       state.personalDetails = action.payload;
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     setEducationDetails: (state, action: PayloadAction<EducationDetails>) => {
       state.educationDetails = [...state.educationDetails, action.payload];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     setWorkDetails: (state, action: PayloadAction<WorkDetails>) => {
       state.workDetails = [...state.workDetails, action.payload];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     setSkills: (state, action: PayloadAction<string>) => {
       state.skills = [...state.skills, action.payload];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     removeEducationDetails: (state, action: PayloadAction<number>) => {
       state.educationDetails = [
         ...state.educationDetails.filter((_v, i) => i !== action.payload),
       ];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     removeWorkDetails: (state, action: PayloadAction<number>) => {
       state.workDetails = [
         ...state.workDetails.filter((_v, i) => i !== action.payload),
       ];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
     removeSkills: (state, action: PayloadAction<number>) => {
       state.skills = [...state.skills.filter((_v, i) => i !== action.payload)];
-      localStorage.setItem("resumetemp", JSON.stringify(state));
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
   },
 });
