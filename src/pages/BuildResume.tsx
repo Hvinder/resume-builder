@@ -16,6 +16,7 @@ import EducationDetailsContainer from "../components/EducationDetails";
 import Skills from "../components/Skills";
 
 import "react-accessible-accordion/dist/fancy-example.css";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Row = styled.div`
   display: flex;
@@ -40,6 +41,9 @@ const StyledAccordionItemButton = styled(AccordionItemButton)`
 `;
 
 const BuildResume = () => {
+  const { width } = useWindowDimensions();
+  const isSmall = width < 800;
+
   const items = [
     {
       heading: "Personal details",
@@ -59,8 +63,8 @@ const BuildResume = () => {
     },
   ];
   return (
-    <Container direction="row" alignitems="flex-start">
-      <Container width="60%">
+    <Container direction={isSmall ? "column" : "row"} alignitems="flex-start">
+      <Container width={isSmall ? "100%" : '60%'}>
         <p className="text-3xl">Let's get started</p>
         <Accordion className="w-full" allowMultipleExpanded allowZeroExpanded preExpanded={[0]}>
           {items.map((item, i) => (
@@ -84,7 +88,7 @@ const BuildResume = () => {
           ))}
         </Accordion>
       </Container>
-      <Container width="40%">
+      <Container width={isSmall ? "100%" : '40%'}>
         <Preview />
       </Container>
     </Container>
