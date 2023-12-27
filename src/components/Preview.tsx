@@ -29,7 +29,7 @@ const Preview = () => {
     localStorage.removeItem(localstorageKeys.RESUMETEMP);
     setTimeout(() => {
       navigate("/dashboard");
-    }, 100);
+    }, 500);
   };
 
   return (

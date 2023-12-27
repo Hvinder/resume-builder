@@ -26,7 +26,7 @@ const ExperienceDetails = ({
       <Row>
         {`${experience.startMonth} ${experience.startYear}`} -{" "}
         {experience.isCurrent
-          ? ""
+          ? "current"
           : `${experience.endMonth} ${experience.endYear}`}
       </Row>
     </div>

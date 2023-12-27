@@ -48,6 +48,10 @@ export const resumeSlice = createSlice({
       state.skills = [...state.skills, action.payload];
       localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
     },
+    setResumeDetails: (state, action: PayloadAction<ResumeState>) => {
+      state = action.payload;
+      localStorage.setItem(localstorageKeys.RESUMETEMP, JSON.stringify(state));
+    },
     removeEducationDetails: (state, action: PayloadAction<number>) => {
       state.educationDetails = [
         ...state.educationDetails.filter((_v, i) => i !== action.payload),
@@ -72,6 +76,7 @@ export const {
   setEducationDetails,
   setWorkDetails,
   setSkills,
+  setResumeDetails,
   removeEducationDetails,
   removeWorkDetails,
   removeSkills,

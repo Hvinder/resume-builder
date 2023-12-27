@@ -14,7 +14,13 @@ const EducationDetailsContainer = () => {
   const educationDetails = useAppSelector(selectEducationDetails);
   const dispatch = useAppDispatch();
 
-  const [experience, setExperience] = useState<Partial<EducationDetails>>();
+  const [experience, setExperience] = useState<Partial<EducationDetails>>({
+    startMonth: "may",
+    startYear: "2023",
+    isCurrent: true,
+    endMonth: "august",
+    endYear: "2023",
+  });
 
   const handleSaveExperience = () => {
     if (
@@ -27,7 +33,13 @@ const EducationDetailsContainer = () => {
       return;
     }
     dispatch(setEducationDetails(experience as EducationDetails));
-    setExperience(undefined);
+    setExperience({
+      startMonth: "may",
+      startYear: "2023",
+      isCurrent: true,
+      endMonth: "august",
+      endYear: "2023",
+    });
   };
 
   const handleRemoveExperience = (index: number) => {

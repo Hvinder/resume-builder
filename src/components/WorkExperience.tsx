@@ -15,7 +15,13 @@ const WorkExperience = () => {
   const workExperiences = useAppSelector(selectWorkExperiences);
   const dispatch = useAppDispatch();
 
-  const [experience, setExperience] = useState<Partial<WorkDetails>>();
+  const [experience, setExperience] = useState<Partial<WorkDetails>>({
+    startMonth: "may",
+    startYear: "2023",
+    isCurrent: true,
+    endMonth: "august",
+    endYear: "2023",
+  });
 
   const handleSaveExperience = () => {
     if (
@@ -28,7 +34,13 @@ const WorkExperience = () => {
       return;
     }
     dispatch(setWorkDetails(experience as WorkDetails));
-    setExperience(undefined);
+    setExperience({
+      startMonth: "may",
+      startYear: "2023",
+      isCurrent: true,
+      endMonth: "august",
+      endYear: "2023",
+    });
   };
 
   const handleRemoveExperience = (index: number) => {
@@ -82,10 +94,12 @@ const WorkExperience = () => {
         </div>
         <div className="flex flex-col w-3/5">
           <span>currently working?</span>
-          <input type="checkbox" checked={!!experience?.isCurrent} 
-          onChange={(ev) =>
-            setExperience((exp) => ({ ...exp, isCurrent: ev.target.checked }))
-          }
+          <input
+            type="checkbox"
+            checked={!!experience?.isCurrent}
+            onChange={(ev) =>
+              setExperience((exp) => ({ ...exp, isCurrent: ev.target.checked }))
+            }
           />
         </div>
       </div>

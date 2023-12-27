@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ResumeCard from "../components/ResumeCard";
 import { ResumeState } from "../redux/features/resumeSlice";
@@ -14,10 +14,6 @@ const Dashboard = () => {
   const [resumes] = useState<ResumeState[]>(
     JSON.parse(localStorage.getItem(localstorageKeys.RESUMES) || "[]"),
   );
-
-  useEffect(() => {
-    localStorage.removeItem(localstorageKeys.RESUMETEMP);
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-between h-36 gap-10">
