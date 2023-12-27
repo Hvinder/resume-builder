@@ -37,7 +37,7 @@ const EducationDetailsContainer = () => {
   return (
     <div className="flex flex-col gap-5">
       {educationDetails.map((educationDetails, i) => (
-        <div className="relative">
+        <div className="relative" key={i}>
           <ExperienceDetails experience={educationDetails} />
           <XCircle
             className="absolute top-0 -right-5 cursor-pointer"

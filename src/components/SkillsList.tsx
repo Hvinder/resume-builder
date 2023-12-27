@@ -9,7 +9,7 @@ const SkillsList = ({ allowDelete = false }: { allowDelete?: boolean }) => {
   return (
     <span className="flex flex-row flex-wrap gap-5 w-3/5">
       {skills.map((skill, i) => (
-        <span className="relative">
+        <span className="relative" key={i}>
           <span className="px-5 py-2 border rounded">{skill}</span>
           {allowDelete ? (
             <XCircle

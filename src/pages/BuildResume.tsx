@@ -26,11 +26,11 @@ const Row = styled.div`
 const Container = styled(Row)<{
   width?: string;
   direction?: string;
-  alignItems?: string;
+  alignitems?: string;
 }>`
   display: flex;
   flex-direction: ${(props) => props.direction || "column"};
-  align-items: ${(props) => props.alignItems || "center"};
+  align-items: ${(props) => props.alignitems || "center"};
   width: ${(props) => props.width || "100%"};
   gap: 40px;
 `;
@@ -59,9 +59,10 @@ const BuildResume = () => {
     },
   ];
   return (
-    <Container direction="row" alignItems="flex-start">
+    <Container direction="row" alignitems="flex-start">
       <Container width="60%">
-        <Accordion className="w-full" allowMultipleExpanded allowZeroExpanded>
+        <p className="text-3xl">Let's get started</p>
+        <Accordion className="w-full" allowMultipleExpanded allowZeroExpanded preExpanded={[0]}>
           {items.map((item, i) => (
             <Row className="p-5 shadow-md" key={i}>
               <AccordionItem className="w-full" uuid={i}>

@@ -38,7 +38,7 @@ const WorkExperience = () => {
   return (
     <div className="flex flex-col gap-5">
       {workExperiences.map((workExperience, i) => (
-        <div className="relative">
+        <div className="relative" key={i}>
           <ExperienceDetails experience={workExperience} />
           <XCircle
             className="absolute top-0 -right-5 cursor-pointer"
