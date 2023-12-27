@@ -15,6 +15,14 @@ const Row = styled.div`
 const Preview = () => {
   const resumeDetails = useAppSelector(selectResumeDetails);
 
+  const handleSave = () => {
+    const existing = JSON.parse(localStorage.getItem("resumes") || "[]");
+    localStorage.setItem(
+      "resumes",
+      JSON.stringify([...existing, resumeDetails]),
+    );
+  };
+
   return (
     <div className="w-full">
       <div className="flex flex-col gap-2">
@@ -78,9 +86,15 @@ const Preview = () => {
       {resumeDetails.skills.length && (
         <div className="flex flex-col gap-2 mt-10 mb-5">
           <p className="text-3xl">Skills</p>
-            <SkillsList />
+          <SkillsList />
         </div>
       )}
+      <button
+        className="bg-green-400 hover:bg-green-500 hover:outline-none w-fit"
+        onClick={handleSave}
+      >
+        SAVE
+      </button>
     </div>
   );
 };

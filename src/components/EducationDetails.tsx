@@ -35,7 +35,7 @@ const EducationDetailsContainer = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 w-3/5">
+    <div className="flex flex-col gap-5">
       {educationDetails.map((educationDetails, i) => (
         <div className="relative">
           <ExperienceDetails experience={educationDetails} />

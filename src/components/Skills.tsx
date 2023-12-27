@@ -17,7 +17,7 @@ const Skills = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 w-3/5">
+    <div className="flex flex-col gap-5">
       <SkillsList allowDelete />
       <Input
         type="text"
