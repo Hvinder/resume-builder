@@ -30,7 +30,7 @@ const Dashboard = () => {
         className="flex cursor-pointer justify-center items-center p-2 w-48 h-20 rounded-lg shadow-xl border-solid border-2 border-black"
         onClick={handleBuildStart}
       >
-        Build one!
+        {resumes.length ? 'Build another one!' : 'Build one!'}
       </div>
     </div>
   );
