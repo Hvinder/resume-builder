@@ -5,7 +5,9 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
+  AccordionItemState,
 } from "react-accessible-accordion";
+import { ArrowDown, ArrowRight } from "react-feather";
 
 import PersonalDetails from "../components/PersonalDetails";
 import Preview from "../components/Preview";
@@ -38,56 +40,47 @@ const StyledAccordionItemButton = styled(AccordionItemButton)`
 `;
 
 const BuildResume = () => {
+  const items = [
+    {
+      heading: "Personal details",
+      item: <PersonalDetails />,
+    },
+    {
+      heading: "Work experience",
+      item: <WorkExperience />,
+    },
+    {
+      heading: "Education details",
+      item: <EducationDetailsContainer />,
+    },
+    {
+      heading: "Skills",
+      item: <Skills />,
+    },
+  ];
   return (
     <Container direction="row" alignItems="flex-start">
       <Container width="60%">
         <Accordion className="w-full" allowMultipleExpanded allowZeroExpanded>
-          <Row className="p-5 shadow-md">
-            <AccordionItem className="w-full">
-              <AccordionItemHeading>
-                <StyledAccordionItemButton>
-                  Personal details
-                </StyledAccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <PersonalDetails />
-              </AccordionItemPanel>
-            </AccordionItem>
-          </Row>
-          <Row className="p-5 shadow-md">
-            <AccordionItem className="w-full">
-              <AccordionItemHeading>
-                <StyledAccordionItemButton>
-                  Work experience
-                </StyledAccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <WorkExperience />
-              </AccordionItemPanel>
-            </AccordionItem>
-          </Row>
-          <Row className="p-5 shadow-md">
-            <AccordionItem className="w-full">
-              <AccordionItemHeading>
-                <StyledAccordionItemButton>
-                  Education details
-                </StyledAccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <EducationDetailsContainer />
-              </AccordionItemPanel>
-            </AccordionItem>
-          </Row>
-          <Row className="p-5 shadow-md">
-            <AccordionItem className="w-full">
-              <AccordionItemHeading>
-                <StyledAccordionItemButton>Skills</StyledAccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <Skills />
-              </AccordionItemPanel>
-            </AccordionItem>
-          </Row>
+          {items.map((item, i) => (
+            <Row className="p-5 shadow-md" key={i}>
+              <AccordionItem className="w-full" uuid={i}>
+                <AccordionItemHeading>
+                  <StyledAccordionItemButton>
+                    <span className="flex w-full justify-between items-center">
+                      {item.heading}
+                      <AccordionItemState>
+                        {({ expanded }) =>
+                          expanded ? <ArrowDown /> : <ArrowRight />
+                        }
+                      </AccordionItemState>
+                    </span>
+                  </StyledAccordionItemButton>
+                </AccordionItemHeading>
+                <AccordionItemPanel>{item.item}</AccordionItemPanel>
+              </AccordionItem>
+            </Row>
+          ))}
         </Accordion>
       </Container>
       <Container width="40%">
